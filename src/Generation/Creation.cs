@@ -70,18 +70,6 @@ namespace MonkeMaze.Generation
             MonkeMaze = new GameObject();
             MonkeMaze.transform.position = position;
             MonkeMaze.AddComponent<Gamemode.Manager>();
-
-            GameObject roof = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            roof.transform.parent = MonkeMaze.transform;
-            roof.transform.localPosition = new Vector3(scale, 4, scale);
-            roof.transform.localScale = Vector3.one * scale;
-            roof.transform.eulerAngles = new Vector3(0, 0, 180);
-            roof.GetComponent<MeshRenderer>().enabled = false;
-        }
-
-        internal static string DrawMaze()
-        {
-            string draw = "\n";
             for (int i = 0; i < scale + 2; ++i)
             {
                 for (int j = 0; j < scale + 2; ++j)
@@ -92,12 +80,14 @@ namespace MonkeMaze.Generation
                     GameObject tile = GameObject.Instantiate(TileSets.GetTile(map[i, j]));
                     tile.transform.parent = MonkeMaze.transform;
                     tile.transform.localPosition = pos;
-
-                    draw += tile2str[map[i, j]];
                 }
-                draw += "\n";
             }
-            return draw;
+            GameObject roof = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            roof.transform.parent = MonkeMaze.transform;
+            roof.transform.localPosition = new Vector3(scale, 4, scale);
+            roof.transform.localScale = Vector3.one * scale;
+            roof.transform.eulerAngles = new Vector3(0, 0, 180);
+            roof.GetComponent<MeshRenderer>().enabled = false;
         }
 
         internal static Vector3 GetTilePos(int x, int y, bool local)

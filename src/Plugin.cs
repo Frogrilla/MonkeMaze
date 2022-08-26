@@ -91,7 +91,8 @@ namespace MonkeMaze
 
             GameObject SecretTiles = Bundle.LoadAsset<GameObject>("SecretTiles");
             TileSets.SecretTiles = new GameObject[] {
-                SecretTiles.transform.Find("TheHole").gameObject
+                SecretTiles.transform.Find("TheHole").gameObject,
+                SecretTiles.transform.Find("Painting").gameObject
             };
 
             GameObject RelicTiles = Bundle.LoadAsset<GameObject>("RelicTiles");
